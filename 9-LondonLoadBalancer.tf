@@ -18,7 +18,7 @@ resource "aws_lb" "London_alb" {
   }
 }
 
-resource "aws_lb_listener" "http" {
+resource "aws_lb_listener" "http_lon" {
   load_balancer_arn = aws_lb.London_alb.arn
   port              = 80
   protocol          = "HTTP"

@@ -1,8 +1,9 @@
 provider "aws" {
   region = "sa-east-1"
+  alias = "saopaolo"
 }
 
-terraform {
+/*terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -10,3 +11,4 @@ terraform {
     }
   }
 }
+*/
