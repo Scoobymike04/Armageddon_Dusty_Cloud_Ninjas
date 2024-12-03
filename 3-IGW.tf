@@ -4,7 +4,7 @@ resource "aws_internet_gateway" "igw_aus" {
   vpc_id = aws_vpc.australia.id
 
   tags = {
-    Name    = "australia_IG"
+    Name     = "australia_IG"
     location = "australia"
   }
 }
@@ -14,7 +14,7 @@ resource "aws_internet_gateway" "igw_cal" {
   vpc_id = aws_vpc.california.id
 
   tags = {
-    Name    = "california_IG"
+    Name     = "california_IG"
     location = "california"
   }
 }
@@ -24,7 +24,7 @@ resource "aws_internet_gateway" "igw_hon" {
   vpc_id = aws_vpc.hongkong.id
 
   tags = {
-    Name    = "hongkong_IG"
+    Name     = "hongkong_IG"
     location = "hongkong"
   }
 }

@@ -1,0 +1,17 @@
+443 Tokyo by itself
+628 wrapping in map
+1926 map example 
+--- variable "Tokyo-subnets" {
+    type = map(map(string))
+
+    default = {
+        tokoy-a-public = {
+            vpc = "tokyo"
+        }
+    }
+}
+...then reference Tokyo-subnets[1]
+1955...to loop do this >>> for_each = var.tokyo-subnets
+
+2749 - Change az name from b to c
+            3036 Using one subnet for tokyo Test

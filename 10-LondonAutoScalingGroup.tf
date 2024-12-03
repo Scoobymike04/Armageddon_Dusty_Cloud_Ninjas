@@ -1,16 +1,16 @@
 resource "aws_autoscaling_group" "London_asg" {
-  name_prefix           = "London-auto-scaling-group-"
-  min_size              = 3
-  max_size              = 9
-  desired_capacity      = 6
-  vpc_zone_identifier   = [
+  name_prefix      = "London-auto-scaling-group-"
+  min_size         = 3
+  max_size         = 9
+  desired_capacity = 6
+  vpc_zone_identifier = [
     aws_subnet.private-eu-west-2a.id,
-    aws_subnet.private-eu-west-2c.id,
+    aws_subnet.private-eu-west-2c,
   ]
-  health_check_type          = "ELB"
-  health_check_grace_period  = 300
-  force_delete               = true
-  target_group_arns          = [aws_lb_target_group.London_tg.arn]
+  health_check_type         = "ELB"
+  health_check_grace_period = 300
+  force_delete              = true
+  target_group_arns         = [aws_lb_target_group.London_tg.arn]
 
   launch_template {
     id      = aws_launch_template.London_LT.id
@@ -30,10 +30,10 @@ resource "aws_autoscaling_group" "London_asg" {
 
   # Instance protection for terminating
   initial_lifecycle_hook {
-    name                  = "scale-in-protection"
-    lifecycle_transition  = "autoscaling:EC2_INSTANCE_TERMINATING"
-    default_result        = "CONTINUE"
-    heartbeat_timeout     = 300
+    name                 = "scale-in-protection"
+    lifecycle_transition = "autoscaling:EC2_INSTANCE_TERMINATING"
+    default_result       = "CONTINUE"
+    heartbeat_timeout    = 300
   }
 
   tag {
@@ -46,8 +46,8 @@ resource "aws_autoscaling_group" "London_asg" {
     key                 = "Environment"
     value               = "Production"
     propagate_at_launch = true
-  } 
-lifecycle {
+  }
+  lifecycle {
     create_before_destroy = true
   }
 
@@ -59,7 +59,7 @@ resource "aws_autoscaling_policy" "London_scaling_policy" {
   name                   = "London-cpu-target"
   autoscaling_group_name = aws_autoscaling_group.London_asg.name
 
-  policy_type = "TargetTrackingScaling"
+  policy_type               = "TargetTrackingScaling"
   estimated_instance_warmup = 120
 
   target_tracking_configuration {
