@@ -18,7 +18,7 @@ resource "aws_lb" "SaoPaolo_alb" {
   }
 }
 
-resource "aws_lb_listener" "http" {
+resource "aws_lb_listener" "http_sao" {
   load_balancer_arn = aws_lb.SaoPaolo_alb.arn
   port              = 80
   protocol          = "HTTP"
@@ -51,7 +51,7 @@ resource "aws_lb_listener" "https" {
   }
 }
 */
-output "lb_dns_name" {
+output "lb_dns_name_sao" {
   value       = aws_lb.SaoPaolo_alb.dns_name
   description = "The DNS name of the SaoPaolo Load Balancer."
 }

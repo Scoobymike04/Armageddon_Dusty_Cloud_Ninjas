@@ -57,3 +57,15 @@ resource "aws_subnet" "private-eu-west-2b" {
   }
 }
 
+# resource "aws_subnet" "private-eu-west-2c" {
+#   vpc_id            = aws_vpc.London.id
+#   cidr_block        = "10.22.13.0/24"
+#   availability_zone = "eu-west-2b"
+
+#   tags = {
+#     Name    = "private-eu-west-2c"
+#     Service = "application1"
+#     Owner   = "Luke"
+#     Planet  = "Musafar"
+#   }
+# }

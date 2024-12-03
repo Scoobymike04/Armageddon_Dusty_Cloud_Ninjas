@@ -1,4 +1,4 @@
-resource "aws_internet_gateway" "igw" {
+resource "aws_internet_gateway" "igw_tok" {
   vpc_id = aws_vpc.Tokyoapp1.id
 
   tags = {

@@ -1,8 +1,9 @@
 provider "aws" {
   region = "us-east-1"
+  alias = "newyork"
 }
 
-terraform {
+/*terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -10,3 +11,4 @@ terraform {
     }
   }
 }
+*/

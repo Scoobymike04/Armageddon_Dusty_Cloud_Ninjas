@@ -142,3 +142,29 @@ resource "aws_subnet" "private-us-west-1b" {
     Service = "hongkong.idaws_vpc.hongkong.id"
   }
 }
+//''''''''''''''''''''
+resource "aws_subnet" "public-eu-west-2c" {
+  vpc_id                  = aws_vpc.London.id
+  cidr_block              = "10.71.3.0/24"
+  availability_zone       = "eu-west-2c"
+  map_public_ip_on_launch = true
+
+  tags = {
+    Name    = "public-eu-west-2c"
+    Service = "application1"
+    Owner   = "Luke"
+    Planet  = "Musafar"
+  }
+}
+resource "aws_subnet" "private-eu-west-2c" {
+  vpc_id            = aws_vpc.London.id
+  cidr_block        = "10.71.13.0/24"
+  availability_zone = "eu-west-2c"
+
+  tags = {
+    Name    = "private-eu-west-2c"
+    Service = "application1"
+    Owner   = "Luke"
+    Planet  = "Musafar"
+  }
+}
