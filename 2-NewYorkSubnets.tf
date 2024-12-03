@@ -82,3 +82,4 @@ resource "aws_subnet" "private-us-east-1c" {
     Owner   = "Luke"
     Planet  = "Musafar"
   }
+}
