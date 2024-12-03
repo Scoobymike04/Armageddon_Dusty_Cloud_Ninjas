@@ -1,0 +1,11 @@
+
+resource "aws_vpc" "New York" {
+  cidr_block = "10.21.0.0/16"
+
+  tags = {
+    Name = "New York"
+    Service = "application1"
+    Owner = "Chewbacca"
+    Planet = "Mustafar"
+  }
+}
