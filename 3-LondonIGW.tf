@@ -1,4 +1,4 @@
-resource "aws_internet_gateway" "igw" {
+resource "aws_internet_gateway" "igw_lon" {
   vpc_id = aws_vpc.London.id
 
   tags = {

@@ -1,1 +1,11 @@
-rgtberhter
+resource "aws_instance" "australia_ec2"  {
+  #source  = "terraform-aws-modules/ec2-instance/aws"
+  #provider = aws
+  #name_prefix   = "australia_LT"
+  ami           = "ami-0146fc9ad419e2cfd"  
+  instance_type = "t2.micro"
+  subnet_id     = aws_subnet.private-ap-southeast-2b.id
+  key_name = "MyLinuxBox"
+
+  vpc_security_group_ids = [aws_security_group.australia-sg01-servers.id]
+}

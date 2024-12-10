@@ -1,4 +1,4 @@
-resource "aws_internet_gateway" "igw" {
+resource "aws_internet_gateway" "igw_sao" {
   vpc_id = aws_vpc.SaoPaolo.id
 
   tags = {
