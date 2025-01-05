@@ -6,7 +6,8 @@ resource "aws_launch_template" "launch_tokyo" {
   image_id      = "ami-023ff3d4ab11b2525"
   instance_type = "t2.micro"
 
-  key_name = "tokyo"
+  #key_name = "tokyo"
+  key_name = aws_key_pair.tokyo.key_name  # Reference the key pair resource
 
   vpc_security_group_ids = [aws_security_group.tokyo-sg.id]
 
@@ -68,6 +69,7 @@ resource "aws_launch_template" "launch_new-york" {
   instance_type = "t2.micro"
 
   # key_name = "new_york"
+  
 
   vpc_security_group_ids = [aws_security_group.new-york-sg.id]
 
@@ -127,8 +129,9 @@ resource "aws_launch_template" "launch_london" {
   image_id      = "ami-0c76bd4bd302b30ec"
   instance_type = "t2.micro"
 
-  key_name = "london"
-
+  #key_name = "london"
+  key_name = aws_key_pair.london.key_name  # Reference the key pair resource
+  
   vpc_security_group_ids = [aws_security_group.london-sg.id]
 
   user_data = base64encode(<<-EOF
@@ -188,8 +191,9 @@ resource "aws_launch_template" "launch_sao-paulo" {
   image_id      = "ami-0c820c196a818d66a"
   instance_type = "t2.micro"
 
-  key_name = "sao-paulo"
-
+  #key_name = "sao-paulo"
+  key_name = aws_key_pair.sao-paulo.key_name  # Reference the key pair resource
+  
   vpc_security_group_ids = [aws_security_group.sao-paulo-sg.id]
 
   user_data = base64encode(<<-EOF
@@ -249,7 +253,8 @@ resource "aws_launch_template" "launch_australia" {
   image_id      = "ami-0146fc9ad419e2cfd"
   instance_type = "t2.micro"
 
-  key_name = "australia"
+  #key_name = "australia"
+  key_name = aws_key_pair.australia.key_name  # Reference the key pair resource
 
   vpc_security_group_ids = [aws_security_group.australia-sg.id]
 
@@ -309,7 +314,8 @@ resource "aws_launch_template" "launch_hong-kong" {
   image_id      = "ami-06f707739f2271995"
   instance_type = "t3.micro"
 
-  key_name = "hong-kong"
+  #key_name = "hong-kong"
+  key_name = aws_key_pair.hong-kong.key_name  # Reference the key pair resource
 
   vpc_security_group_ids = [aws_security_group.hong-kong-sg.id]
 
@@ -370,7 +376,8 @@ resource "aws_launch_template" "launch_california" {
   image_id      = "ami-038bba9a164eb3dc1"
   instance_type = "t2.micro"
 
-  key_name = "california"
+  #key_name = "california"
+  key_name = aws_key_pair.california.key_name  # Reference the key pair resource
 
   vpc_security_group_ids = [aws_security_group.california-sg.id]
 

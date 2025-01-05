@@ -5,7 +5,7 @@
     type = map(map(string))
 
     default = {
-        tokoy-a-public = {
+        tokyo-a-public = {
             vpc = "tokyo"
         }
     }
