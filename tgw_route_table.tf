@@ -16,6 +16,11 @@ resource "aws_ec2_transit_gateway_route" "hong_kong_local_vpc_route" {
 
 resource "aws_ec2_transit_gateway_route" "hong_kong_to_tokyo_route" {
   provider                       = aws.Hong-Kong
+  depends_on = [ 
+    aws_ec2_transit_gateway_peering_attachment.hong_kong_to_tokyo,
+    aws_ec2_transit_gateway_peering_attachment_accepter.accept_hong_kong_to_tokyo,
+   ]
+
   destination_cidr_block         = aws_vpc.tokyo-vpc.cidr_block
   transit_gateway_attachment_id  = aws_ec2_transit_gateway_peering_attachment.hong_kong_to_tokyo.id
   transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.hong_kong.id
@@ -43,12 +48,17 @@ resource "aws_ec2_transit_gateway_route_table" "tokyo" {
   }
 }
 
-resource "aws_ec2_transit_gateway_route" "tokyo-hong_kong_route" {
+/*resource "aws_ec2_transit_gateway_route" "tokyo-hong_kong_route" {
   provider                       = aws.Tokyo
+  depends_on = [ 
+    aws_ec2_transit_gateway_peering_attachment.tokyo_to_hong_kong,
+    aws_ec2_transit_gateway_peering_attachment_accepter.accept_tokyo_to_hong_kong,
+   ]
+
   destination_cidr_block         = aws_vpc.hong-kong-vpc.cidr_block
-  transit_gateway_attachment_id  = aws_ec2_transit_gateway_peering_attachment.hong_kong_to_tokyo.id
+  transit_gateway_attachment_id  = aws_ec2_transit_gateway_peering_attachment.tokyo_to_hong_kong.id
   transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.tokyo.id
-}
+}*/
 
 resource "aws_ec2_transit_gateway_route" "tokyo_local_vpc_route" {
   provider                       = aws.Tokyo
@@ -88,13 +98,14 @@ resource "aws_ec2_transit_gateway_route" "london_local_vpc_route" {
 
 resource "aws_ec2_transit_gateway_route" "london_to_tokyo_route" {
   provider                       = aws.London
+   depends_on = [ 
+    aws_ec2_transit_gateway_peering_attachment.London_to_tokyo,
+    aws_ec2_transit_gateway_peering_attachment_accepter.accept_London_to_tokyo,
+   ]
+
   destination_cidr_block         = aws_vpc.tokyo-vpc.cidr_block
   transit_gateway_attachment_id  = aws_ec2_transit_gateway_peering_attachment.London_to_tokyo.id
   transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.London.id
-
-  depends_on = [
-    aws_ec2_transit_gateway_peering_attachment.London_to_tokyo
-  ]
 }
 
 /*resource "aws_ec2_transit_gateway_route_table_association" "london_peering_association" {
@@ -128,6 +139,11 @@ resource "aws_ec2_transit_gateway_route" "Australia_local_vpc_route" {
 
 resource "aws_ec2_transit_gateway_route" "Australia_to_tokyo_route" {
   provider                       = aws.Australia
+  depends_on = [ 
+    aws_ec2_transit_gateway_peering_attachment.Australia_to_tokyo,
+    aws_ec2_transit_gateway_peering_attachment_accepter.accept_Australia_to_tokyo,
+   ]
+
   destination_cidr_block         = aws_vpc.tokyo-vpc.cidr_block
   transit_gateway_attachment_id  = aws_ec2_transit_gateway_peering_attachment.Australia_to_tokyo.id
   transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.Australia.id
@@ -164,6 +180,10 @@ resource "aws_ec2_transit_gateway_route" "California_local_vpc_route" {
 
 resource "aws_ec2_transit_gateway_route" "California_to_tokyo_route" {
   provider                       = aws.California
+  depends_on = [ 
+    aws_ec2_transit_gateway_peering_attachment.California_to_tokyo,
+    aws_ec2_transit_gateway_peering_attachment_accepter.accept_California_to_tokyo,
+   ]
   destination_cidr_block         = aws_vpc.tokyo-vpc.cidr_block
   transit_gateway_attachment_id  = aws_ec2_transit_gateway_peering_attachment.California_to_tokyo.id
   transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.California.id
@@ -200,6 +220,10 @@ resource "aws_ec2_transit_gateway_route" "New_York_local_vpc_route" {
 
 resource "aws_ec2_transit_gateway_route" "New_York_to_tokyo_route" {
   provider                       = aws.New-York
+  depends_on = [ 
+    aws_ec2_transit_gateway_peering_attachment.New_York_to_tokyo,
+    aws_ec2_transit_gateway_peering_attachment_accepter.accept_New_York_to_tokyo,
+   ]
   destination_cidr_block         = aws_vpc.tokyo-vpc.cidr_block
   transit_gateway_attachment_id  = aws_ec2_transit_gateway_peering_attachment.New_York_to_tokyo.id
   transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.New_York.id
@@ -236,6 +260,10 @@ resource "aws_ec2_transit_gateway_route" "Sao_Paulo_local_vpc_route" {
 
 resource "aws_ec2_transit_gateway_route" "Sao-Paulo_to_tokyo_route" {
   provider                       = aws.Sao-Paulo
+  depends_on = [ 
+    aws_ec2_transit_gateway_peering_attachment.Sao_Paulo_to_tokyo,
+    aws_ec2_transit_gateway_peering_attachment_accepter.accept_Sao_Paulo_to_tokyo,
+   ]
   destination_cidr_block         = aws_vpc.tokyo-vpc.cidr_block
   transit_gateway_attachment_id  = aws_ec2_transit_gateway_peering_attachment.Sao_Paulo_to_tokyo.id
   transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.Sao_Paulo.id
